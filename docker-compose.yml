@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+  build:
+    network_mode: host
+    build:
+      network: host
+      context: .
+      dockerfile: ./Docker/Dockerfile
+      target: build
+    image: pose-explorer-web-app-build
+    volumes:
+       - .:/code
+  service:
+    network_mode: host
+    build:
+      network: host
+      context: .
+      dockerfile: ./Docker/Dockerfile
+      target: service
+    image: pose-explorer-web-app
+    ports:
+      - 5111:5111
